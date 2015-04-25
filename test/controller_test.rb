@@ -18,7 +18,7 @@ class ControllerTest < MiniTest::Test
 
   def test_route_adds_an_endpoint
     endpoint = FakeController.endpoints.first
-    assert_equal :post, endpoint.verb
+    assert_equal "POST", endpoint.verb
     assert_equal "/fake", endpoint.path
   end
 
