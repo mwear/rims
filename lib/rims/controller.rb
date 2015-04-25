@@ -1,3 +1,4 @@
+require 'rack'
 require 'rims/endpoint'
 require 'rims/language_extensions/module'
 require 'rims/language_extensions/class'
