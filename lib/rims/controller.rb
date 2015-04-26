@@ -1,3 +1,4 @@
+require 'rack'
 require 'rims/endpoint'
 require 'rims/language_extensions/module'
 require 'rims/language_extensions/class'
@@ -35,16 +36,22 @@ module Rims
     end
 
     attr_reader :request
-    attr_func :status
+    attr_func :status, :body
 
     def initialize(env)
       @request = Rack::Request.new(env)
       status 200
+      body nil
     end
 
     def call
-      body = instance_eval(&self.class._action)
+      body instance_eval(&self.class._action)
       [status, {}, [body]]
+    end
+
+    def render(body, opts = {})
+      status(opts[:status] || 200)
+      return body
     end
   end
 end
