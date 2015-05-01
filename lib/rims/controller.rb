@@ -44,6 +44,10 @@ module Rims
       body nil
     end
 
+    def params
+      @params ||= request.GET.merge(request.POST)
+    end
+
     def call
       body instance_eval(&self.class._action)
       [status, {}, [body]]
