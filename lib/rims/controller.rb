@@ -36,12 +36,13 @@ module Rims
     end
 
     attr_reader :request
-    attr_func :status, :body
+    attr_func :status, :headers, :body
 
     def initialize(env)
       @request = Rack::Request.new(env)
       status 200
       body nil
+      headers {}
     end
 
     def params
@@ -50,12 +51,13 @@ module Rims
 
     def call
       body instance_eval(&self.class._action)
-      [status, {}, [body]]
+      [status, headers, [body]]
     end
 
     def render(body, opts = {})
-      status(opts[:status] || 200)
-      return body
+      status(opts[:status]) if opts[:status]
+      headers(opts[:headers]) if opts[:headers]
+      body
     end
   end
 end
