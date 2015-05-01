@@ -21,13 +21,7 @@ module Rims
 
     def build_routes
       routes = Journey::Routes.new
-      Controller.each do |controller|
-        controller.endpoints.each do |endpoint|
-          strexp = Journey::Router::Strexp.new endpoint.path, {}, ["/.?"]
-          path = Journey::Path::Pattern.new strexp
-          routes.add_route controller, path, {request_method: endpoint.verb}, {}
-        end
-      end
+      Controller.each { |c| c.mount_endpoints(routes) }
       @router = Journey::Router.new routes, {}
     end
 

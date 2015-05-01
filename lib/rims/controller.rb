@@ -33,6 +33,10 @@ module Rims
       def call(env)
         new(env).call
       end
+
+      def mount_endpoints(routes)
+        endpoints.each { |e| e.mount(self, routes) }
+      end
     end
 
     attr_reader :request
