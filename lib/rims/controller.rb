@@ -42,7 +42,7 @@ module Rims
       @request = Rack::Request.new(env)
       status 200
       body nil
-      headers {}
+      headers Hash.new
     end
 
     def params
@@ -50,8 +50,9 @@ module Rims
     end
 
     def call
-      body instance_eval(&self.class._action)
-      [status, headers, [body]]
+      result = instance_eval(&self.class._action)
+      body(result) if !body && result.is_a?(String)
+      [status, headers, [body || ""]]
     end
 
     def render(body, opts = {})

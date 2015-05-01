@@ -84,7 +84,8 @@ class ControllerTest < MiniTest::Test
 
   def test_controllers_can_return_headers
     controller = ControllerWithHeaders.new({})
-    _, headers, _ = controller.call
+    _, headers, body = controller.call
     assert_equal({location: "/widgets/10"}, headers)
+    assert_kind_of(String, body[0])
   end
 end
