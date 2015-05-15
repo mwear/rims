@@ -1,5 +1,6 @@
 require 'minitest_helper'
 require 'rack/test'
+require 'rims/controller'
 
 class ControllerTest < MiniTest::Test
 
