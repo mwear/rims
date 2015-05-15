@@ -73,20 +73,4 @@ class ControllerTest < MiniTest::Test
     assert_equal 404, result[0]
     assert_equal ["Oh no!"], result[2]
   end
-
-  class ControllerWithHeaders < Rims::Controller
-    description "Test controller with headers"
-    route :get, "/widgets"
-    action do
-      status 201
-      headers location: "/widgets/10"
-    end
-  end
-
-  def test_controllers_can_return_headers
-    controller = ControllerWithHeaders.new({})
-    _, headers, body = controller.call
-    assert_equal({location: "/widgets/10"}, headers)
-    assert_kind_of(String, body[0])
-  end
 end
