@@ -58,19 +58,4 @@ class ControllerTest < MiniTest::Test
     assert_equal "bar", controller.params["foo"]
     assert_equal "qux", controller.params["bar"]
   end
-
-  class FourOhFourController < Rims::Controller
-    description "404s"
-    route :get, "/nonexistent"
-    action do
-      render "Oh no!", status: 404
-    end
-  end
-
-  def test_controllers_can_render_statuses
-    f = FourOhFourController.new(MiniTest::Mock.new)
-    result = f.call
-    assert_equal 404, result[0]
-    assert_equal ["Oh no!"], result[2]
-  end
 end
