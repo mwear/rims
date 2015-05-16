@@ -1,4 +1,4 @@
-require 'minitest_helper'
+require 'test_helper'
 require 'rims/test_case'
 require 'rims/controller'
 

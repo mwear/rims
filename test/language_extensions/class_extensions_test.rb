@@ -1,4 +1,4 @@
-require 'minitest_helper'
+require 'test_helper'
 
 class ClassExtensionsTest < MiniTest::Test
   def test_attr_class_defaults_to_nil

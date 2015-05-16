@@ -1,4 +1,4 @@
-require 'minitest_helper'
+require 'test_helper'
 
 class ModuleExtensionsTest < MiniTest::Test
   def test_attr_func_defaults_to_nil
